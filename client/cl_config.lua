@@ -24,20 +24,11 @@ Config.JobStash = {
     ['mechanic'] = {
         vector3(-339.53, -156.44, 44.59),
     },
-    ['burgershot'] = {
-        vector3(-1192.04, -902.476, 13.998),
-    },
     ['weedshop'] = {
         vector3(374.04, -823.91, 29.3),
     },
-    ['hotdog'] = {
-        vector3(39.55, -1004.71, 29.48),
-    },
     ['vunicorn'] = {
         vector3(93.44, -1292.99, 29.26),
-    },
-    ['pizzajob'] = {
-    vector3(797.22, -750.69, 31.27),
     },
 }
 
