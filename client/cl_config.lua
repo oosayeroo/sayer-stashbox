@@ -3,6 +3,8 @@ Config = Config or {}
 
 Config.UseTarget = GetConvar('UseTarget', 'false') == 'true' -- Use qb-target interactions (don't change this, go to your server.cfg and add `setr UseTarget true` to use this and just that from true to false or the other way around)
 
+--these are random placements i took from qb-management. please set to your own coords
+
 Config.JobStash = {
     ['police'] = {
         vector3(451.62, -973.22, 30.69),
