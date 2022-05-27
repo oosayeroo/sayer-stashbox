@@ -1,5 +1,7 @@
 # qb-stashbox
 
+Discord - https://discord.gg/3WYz3zaqG5
+
 a simple job and gang stash solution for all employees not just bosses
 i used some code from qb-management to create a job storage and gang storage script that lets all employees have access to 4 storage inventories. 
 this will run alongside qb-management but is not a dependency and will work fine without it. 
