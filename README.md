@@ -5,7 +5,6 @@ i used some code from qb-management to create a job storage and gang storage scr
 
 ## Dependencies
 - [qb-core](https://github.com/qbcore-framework/qb-core)
-- [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources) (For the Logs)
 - [qb-input](https://github.com/qbcore-framework/qb-input)
 - [qb-menu](https://github.com/qbcore-framework/qb-menu)
 - [qb-inventory](https://github.com/qbcore-framework/qb-inventory)
@@ -17,4 +16,5 @@ i used some code from qb-management to create a job storage and gang storage scr
 ## Installation
 ### Manual
 - Download the script and put it in the `[qb]` directory.
+- configure in cl_config.lua where you want your storage area for each job, gang
 - No other steps necessary
