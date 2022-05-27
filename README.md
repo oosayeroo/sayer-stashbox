@@ -2,6 +2,7 @@
 
 a simple job and gang stash solution for all employees not just bosses
 i used some code from qb-management to create a job storage and gang storage script that lets all employees have access to 4 storage inventories. 
+this will run alongside qb-management but is not a dependency and will work fine without it. 
 
 ## Dependencies
 - [qb-core](https://github.com/qbcore-framework/qb-core)
@@ -18,3 +19,7 @@ i used some code from qb-management to create a job storage and gang storage scr
 - Download the script and put it in the `[qb]` directory.
 - configure in cl_config.lua where you want your storage area for each job, gang
 - No other steps necessary
+
+## ToDo List
+-figure out why drawtext stays sometimes after leaving menu
+-add more options for you all
