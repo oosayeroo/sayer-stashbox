@@ -24,12 +24,12 @@ Config.JobStash = {
     ['mechanic'] = {
         vector3(-339.53, -156.44, 44.59),
     },
-    ['weedshop'] = {
-        vector3(374.04, -823.91, 29.3),
-    },
-    ['vunicorn'] = {
-        vector3(93.44, -1292.99, 29.26),
-    },
+   -- ['weedshop'] = { --- uncomment these if you have my job scripts (qb-weedshop & qb-unicornjob) or feel free to remove if not
+   --     vector3(380.86, -819.85, 29.3),
+   -- },
+   -- ['vunicorn'] = {
+   --     vector3(108.73, -1304.37, 28.79),
+   -- },
 }
 
 Config.JobStashZones = {
