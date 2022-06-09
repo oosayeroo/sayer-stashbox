@@ -156,7 +156,7 @@ CreateThread(function()
                                     nearJobStash = true
                                     if not shownJobStash then 
                                         exports['qb-core']:DrawText('[E] Open Job Stash', 'left')
-                                        --shownJobStash = true
+                                        shownJobStash = true
                                     end
 
                                     if IsControlJustReleased(0, 38) then
