@@ -1,7 +1,14 @@
--- Zones for Menues
 Config = Config or {}
 
 Config.UseTarget = GetConvar('UseTarget', 'false') == 'true' -- Use qb-target interactions (don't change this, go to your server.cfg and add `setr UseTarget true` to use this and just that from true to false or the other way around)
+
+Config.DebugStashZones = false  --true for testing, making zones, false for live server
+
+Config.GangStashWeight = 100000 --set however you like
+Config.GangStashSlots = 100 --change however you like
+Config.JobStashWeight = 100000
+Config.JobStashSlots = 100
+
 
 --these are random placements i took from qb-management. please set to your own coords
 
@@ -24,12 +31,6 @@ Config.JobStash = {
     ['mechanic'] = {
         vector3(-339.53, -156.44, 44.59),
     },
-   -- ['weedshop'] = { --- uncomment these if you have my job scripts (qb-weedshop & qb-unicornjob) or feel free to remove if not
-   --     vector3(380.86, -819.85, 29.3),
-   -- },
-   -- ['vunicorn'] = {
-   --     vector3(108.73, -1304.37, 28.79),
-   -- },
 }
 
 Config.JobStashZones = {

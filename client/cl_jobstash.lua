@@ -44,28 +44,28 @@ RegisterNetEvent('qb-jobstash:client:OpenMenu', function()
         },
         {
             header = "🗄️ Storage Access",
-            txt = "Open Storage1",
+            txt = "Open"..PlayerJob.label.."Storage1",
             params = {
                 event = "qb-jobstash:client:Stash1",
             }
         },
         {
             header = "🗄️ Storage Access",
-            txt = "Open Storage2",
+            txt = "Open "..PlayerJob.label.." Storage2",
             params = {
                 event = "qb-jobstash:client:Stash2",
             }
         },
         {
             header = "🗄️ Storage Access",
-            txt = "Open Storage3",
+            txt = "Open "..PlayerJob.label.." Storage3",
             params = {
                 event = "qb-jobstash:client:Stash3",
             }
         },
         {
             header = "🗄️ Storage Access",
-            txt = "Open Storage4",
+            txt = "Open "..PlayerJob.label.." Storage4",
             params = {
                 event = "qb-jobstash:client:Stash4",
             }
@@ -84,32 +84,32 @@ end)
 
 RegisterNetEvent('qb-jobstash:client:Stash1', function()
     TriggerServerEvent("inventory:server:OpenInventory", "stash", "job1" .. PlayerJob.name, {
-        maxweight = 4000000,
-        slots = 25,
+        maxweight = Config.JobStashWeight,
+        slots = Config.JobStashSlots,
     })
     TriggerEvent("inventory:client:SetCurrentStash", "job1" .. PlayerJob.name)
 end)
 
 RegisterNetEvent('qb-jobstash:client:Stash2', function()
     TriggerServerEvent("inventory:server:OpenInventory", "stash", "job2" .. PlayerJob.name, {
-        maxweight = 4000000,
-        slots = 25,
+        maxweight = Config.JobStashWeight,
+        slots = Config.JobStashSlots,
     })
     TriggerEvent("inventory:client:SetCurrentStash", "job2" .. PlayerJob.name)
 end)
 
 RegisterNetEvent('qb-jobstash:client:Stash3', function()
     TriggerServerEvent("inventory:server:OpenInventory", "stash", "job3" .. PlayerJob.name, {
-        maxweight = 4000000,
-        slots = 25,
+        maxweight = Config.JobStashWeight,
+        slots = Config.JobStashSlots,
     })
     TriggerEvent("inventory:client:SetCurrentStash", "job3" .. PlayerJob.name)
 end)
 
 RegisterNetEvent('qb-jobstash:client:Stash4', function()
     TriggerServerEvent("inventory:server:OpenInventory", "stash", "job4" .. PlayerJob.name, {
-        maxweight = 4000000,
-        slots = 25,
+        maxweight = Config.JobStashWeight,
+        slots = Config.JobStashSlots,
     })
     TriggerEvent("inventory:client:SetCurrentStash", "job4" .. PlayerJob.name)
 end)
@@ -122,7 +122,7 @@ CreateThread(function()
                 exports['qb-target']:AddBoxZone(job.."-JobStash-"..index, data.coords, data.length, data.width, {
                     name = job.."-JobStash-"..index,
                     heading = data.heading,
-                    -- debugPoly = true,
+                    debugPoly = Config.DebugStashZones,
                     minZ = data.minZ,
                     maxZ = data.maxZ,
                 }, {
@@ -130,7 +130,7 @@ CreateThread(function()
                         {
                             type = "client",
                             event = "qb-jobstash:client:OpenMenu",
-                            icon = "fas fa-sign-in-alt",
+                            icon = "fas fa-box",
                             label = "Job Stash",
                             canInteract = function() return job == PlayerJob.name end,
                         },

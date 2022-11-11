@@ -38,32 +38,32 @@ end)
 
 RegisterNetEvent('qb-gangstash:client:Stash1', function()
     TriggerServerEvent("inventory:server:OpenInventory", "stash", "gang1" .. PlayerGang.name, {
-        maxweight = 4000000,
-        slots = 100,
+        maxweight = Config.GangStashWeight,
+        slots = Config.GangStashSlots,
     })
     TriggerEvent("inventory:client:SetCurrentStash", "gang1" .. PlayerGang.name)
 end)
 
 RegisterNetEvent('qb-gangstash:client:Stash2', function()
     TriggerServerEvent("inventory:server:OpenInventory", "stash", "gang2" .. PlayerGang.name, {
-        maxweight = 4000000,
-        slots = 100,
+        maxweight = Config.GangStashWeight,
+        slots = Config.GangStashSlots,
     })
     TriggerEvent("inventory:client:SetCurrentStash", "gang2" .. PlayerGang.name)
 end)
 
 RegisterNetEvent('qb-gangstash:client:Stash3', function()
     TriggerServerEvent("inventory:server:OpenInventory", "stash", "gang3" .. PlayerGang.name, {
-        maxweight = 4000000,
-        slots = 100,
+        maxweight = Config.GangStashWeight,
+        slots = Config.GangStashSlots,
     })
     TriggerEvent("inventory:client:SetCurrentStash", "gang3" .. PlayerGang.name)
 end)
 
 RegisterNetEvent('qb-gangstash:client:Stash4', function()
     TriggerServerEvent("inventory:server:OpenInventory", "stash", "gang4" .. PlayerGang.name, {
-        maxweight = 4000000,
-        slots = 100,
+        maxweight = Config.GangStashWeight,
+        slots = Config.GangStashSlots,
     })
     TriggerEvent("inventory:client:SetCurrentStash", "gang4" .. PlayerGang.name)
 end)
@@ -78,28 +78,28 @@ RegisterNetEvent('qb-gangstash:client:OpenMenu', function()
         },
         {
             header = "🗄️ Storage Access",
-            txt = "Open Gang Stash 1",
+            txt = "Open"..PlayerGang.label.. "Stash 1",
             params = {
                 event = "qb-gangstash:client:Stash1",
             }
         },
         {
             header = "🗄️ Storage Access",
-            txt = "Open Gang Stash 2",
+            txt = "Open "..PlayerGang.label.. " Stash 2",
             params = {
                 event = "qb-gangstash:client:Stash2",
             }
         },
         {
             header = "🗄️ Storage Access",
-            txt = "Open Gang Stash 3",
+            txt = "Open "..PlayerGang.label.. " Stash 3",
             params = {
                 event = "qb-gangstash:client:Stash3",
             }
         },
         {
             header = "🗄️ Storage Access",
-            txt = "Open Gang Stash 4",
+            txt = "Open "..PlayerGang.label.. " Stash 4",
             params = {
                 event = "qb-gangstash:client:Stash4",
             }
@@ -125,7 +125,7 @@ CreateThread(function()
                 exports['qb-target']:AddBoxZone(gang.."-GangStash"..index, data.coords, data.length, data.width, {
                     name = gang.."-GangStash"..index,
                     heading = data.heading,
-                    -- debugPoly = true,
+                    debugPoly = Config.DebugStashZones,
                     minZ = data.minZ,
                     maxZ = data.maxZ,
                 }, {
