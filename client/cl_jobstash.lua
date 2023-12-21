@@ -118,7 +118,7 @@ end)
 CreateThread(function()
     if Config.UseTarget then
         for job, zones in pairs(Zones) do
-            for index, data in ipairs(zones) do
+            for index, data in ipairs(Config.JobStashZones) do
                 exports['qb-target']:AddBoxZone(job.."-JobStash-"..index, data.coords, data.length, data.width, {
                     name = job.."-JobStash-"..index,
                     heading = data.heading,
