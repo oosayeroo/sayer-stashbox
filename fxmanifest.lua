@@ -6,7 +6,12 @@ description 'qb-stashbox'
 version '1.0.0'
 
 client_scripts {
-    'client/*.lua'
+    'config.lua',
+    'client.lua',
+}
+
+files {
+    'images/*.png',
 }
 
 lua54 'yes'
