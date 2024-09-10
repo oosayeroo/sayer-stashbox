@@ -136,11 +136,13 @@ RegisterNetEvent('sayer-stashbox:OpenStash', function(data)
     local job = data.job
     local weight = data.weight
     local slots = data.slots
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", job.."_"..id, {
+    local invID = job.."_"..id
+    local arguments = {
+        label = job.."_"..id,
         maxweight = weight,
         slots = slots,
-    })
-    TriggerEvent("inventory:client:SetCurrentStash", job.."_"..id)
+    }
+    TriggerServerEvent('sayer-stashbox:OpenInventory', invID, arguments)
 end)
 
 
@@ -187,19 +189,20 @@ function OpenVaultMenu(bank)
                             },
                         },
                     },
-                    {
+                }
+                if Config.VaultUpgrades[bank][result.Upgrade+1] ~= nil then
+                    local item = {
                         header = "Upgrade Membership",
-                        text = "Price: $"..tostring(upgradeprice),
                         params = {
                             event = 'sayer-stashbox:UpgradeVault',
-                            isServer = true,
                             args = {
                                 bank = bank,
                                 upgrade = result.Upgrade,
                             },
                         },
-                    },
-                }
+                    }
+                    table.insert(columns,item)
+                end
                 if Config.AllowVaultSharing then
                     local item = {
                         header = "Shared Vaults",
@@ -362,11 +365,13 @@ RegisterNetEvent('sayer-stashbox:OpenVault', function(data)
     local weight = data.weight
     local slots = data.slots
     local citizenid = QBCore.Functions.GetPlayerData().citizenid
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", bank.."_"..citizenid.."_"..vault, {
+    local invID = bank.."_"..citizenid.."_"..vault
+    local arguments = {
+        label = bank.."_"..citizenid.."_"..vault,
         maxweight = weight,
         slots = slots,
-    })
-    TriggerEvent("inventory:client:SetCurrentStash", bank.."_"..citizenid.."_"..vault)
+    }
+    TriggerServerEvent('sayer-stashbox:OpenInventory', invID, arguments)
 end)
 
 --SHARED VAULT
@@ -534,11 +539,13 @@ RegisterNetEvent('sayer-stashbox:OpenSharedVaultDrawer', function(data)
     local vault = data.vault
     local weight = data.weight
     local slots = data.slots
-    TriggerServerEvent("inventory:server:OpenInventory", "stash", bank.."_"..owner.."_"..vault, {
+    local invID = bank.."_"..owner.."_"..vault
+    local arguments = {
+        label = bank.."_"..owner.."_"..vault,
         maxweight = weight,
         slots = slots,
-    })
-    TriggerEvent("inventory:client:SetCurrentStash", bank.."_"..owner.."_"..vault)
+    }
+    TriggerServerEvent('sayer-stashbox:OpenInventory', invID, arguments)
 end)
 
 RegisterNetEvent('sayer-stashbox:PD:SearchVaultMenu', function(data)

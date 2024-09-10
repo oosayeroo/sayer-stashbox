@@ -23,17 +23,29 @@ function SendNotify(src, msg, type, time, title)
 end
 
 QBCore.Functions.CreateCallback('sayer-stashbox:GetPlayers', function(source, cb)
-	local PlayerList = {}
+	local PlayerList = nil
+    local MyPlayer = QBCore.Functions.GetPlayer(source)
+    local myCID = MyPlayer.PlayerData.citizenid
 	for k, v in pairs(QBCore.Functions.GetPlayers()) do
 		local Player = QBCore.Functions.GetPlayer(v)
-        local item = {}
-        item.id = tonumber(v)
-        DebugCode("ID = "..item.id)
-        item.text = "ID:"..v.." >< "..Player.PlayerData.charinfo.firstname..' '..Player.PlayerData.charinfo.lastname
-        DebugCode("Text = "..item.text)
-        table.insert(PlayerList, item)
+        local cid = Player.PlayerData.citizenid
+        if cid ~= myCID then
+            local item = {}
+            item.id = tonumber(v)
+            DebugCode("ID = "..item.id)
+            item.text = "ID:"..v.." >< "..Player.PlayerData.charinfo.firstname..' '..Player.PlayerData.charinfo.lastname
+            DebugCode("Text = "..item.text)
+            if PlayerList == nil then PlayerList = {} end
+            table.insert(PlayerList, item)
+        end
 	end
 	cb(PlayerList)
+end)
+
+RegisterNetEvent('sayer-stashbox:OpenInventory',function(id,args)
+    local inventoryName = id
+    local data = args
+    exports['qb-inventory']:OpenInventory(source, inventoryName, data)
 end)
 
 RegisterNetEvent('sayer-stashbox:PurchaseVault', function(bank,price)
