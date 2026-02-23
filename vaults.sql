@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `sayer_vaults` (
+CREATE TABLE IF NOT EXISTS `tss_stashbox` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `citizenid` varchar(50) DEFAULT NULL,
   `vaults` text DEFAULT NULL,

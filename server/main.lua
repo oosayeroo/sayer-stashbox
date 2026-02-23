@@ -55,14 +55,14 @@ RegisterNetEvent('sayer-stashbox:PurchaseVault', function(bank,price)
     local citizenid = Player.PlayerData.citizenid
 
     if Player.Functions.RemoveMoney('bank',price) then
-        MySQL.rawExecute('SELECT * FROM sayer_vaults WHERE citizenid = ?', { citizenid }, function(result)
+        MySQL.rawExecute('SELECT * FROM tss_stashbox WHERE citizenid = ?', { citizenid }, function(result)
             if result[1] then
                 local Vaults = json.decode(result[1].vaults)
                 if not Vaults[bank].Purchased then
                     Vaults[bank].Purchased = true
                     Vaults[bank].Upgrade = 1
                     local Table = json.encode(Vaults)
-                    MySQL.update('UPDATE sayer_vaults SET vaults = ? WHERE citizenid = ?', { Table, citizenid })
+                    MySQL.update('UPDATE tss_stashbox SET vaults = ? WHERE citizenid = ?', { Table, citizenid })
                 else
                     SendNotify(src,"You Already Bought This Vault", 'error')
                 end
@@ -78,7 +78,7 @@ RegisterNetEvent('sayer-stashbox:PurchaseVault', function(bank,price)
                 Vaults[bank].Purchased = true
                 Vaults[bank].Upgrade = 1
                 local Table = json.encode(Vaults)
-                MySQL.insert('INSERT INTO sayer_vaults (citizenid, vaults) VALUES (?, ?)', {
+                MySQL.insert('INSERT INTO tss_stashbox (citizenid, vaults) VALUES (?, ?)', {
                     citizenid,
                     Table,
                 })  
@@ -103,14 +103,14 @@ RegisterNetEvent('sayer-stashbox:UpgradeVault', function(data)
         return
     end
 
-    MySQL.rawExecute('SELECT * FROM sayer_vaults WHERE citizenid = ?', { citizenid }, function(result)
+    MySQL.rawExecute('SELECT * FROM tss_stashbox WHERE citizenid = ?', { citizenid }, function(result)
         if result[1] then
             local Vaults = json.decode(result[1].vaults)
             if Vaults[bank].Purchased then
                 if Player.Functions.RemoveMoney('bank',upgradeprice) then
                     Vaults[bank].Upgrade = Vaults[bank].Upgrade + 1
                     local Table = json.encode(Vaults)
-                    MySQL.update('UPDATE sayer_vaults SET vaults = ? WHERE citizenid = ?', { Table, citizenid })
+                    MySQL.update('UPDATE tss_stashbox SET vaults = ? WHERE citizenid = ?', { Table, citizenid })
                 else
                     SendNotify(src,"Not Enough Money", 'error')
                 end
@@ -132,7 +132,7 @@ RegisterNetEvent('sayer-stashbox:GrantVaultAccess', function(bank,player)
     local playercitizenid = Player.PlayerData.citizenid
     local shareprice = Config.Banks[bank].GiveKeyPrice
 
-    MySQL.rawExecute('SELECT * FROM sayer_vaults WHERE citizenid = ?', { ownercitizenid }, function(result)
+    MySQL.rawExecute('SELECT * FROM tss_stashbox WHERE citizenid = ?', { ownercitizenid }, function(result)
         if result[1] then
             local Vaults = json.decode(result[1].vaults)
             if Vaults[bank].Purchased then
@@ -151,7 +151,7 @@ RegisterNetEvent('sayer-stashbox:GrantVaultAccess', function(bank,player)
                     return
                 end
                 local Table = json.encode(Vaults)
-                MySQL.update('UPDATE sayer_vaults SET vaults = ? WHERE citizenid = ?', { Table, ownercitizenid })
+                MySQL.update('UPDATE tss_stashbox SET vaults = ? WHERE citizenid = ?', { Table, ownercitizenid })
             else
                 SendNotify(src,"You Dont Have a Vault Here", 'error')
             end
@@ -170,7 +170,7 @@ QBCore.Functions.CreateCallback('sayer-stashbox:GetSharedVaults', function(sourc
     local ValidVaults = {}
     local Vaults = {}
 
-    MySQL.rawExecute('SELECT * FROM sayer_vaults ', { }, function(result)
+    MySQL.rawExecute('SELECT * FROM tss_stashbox ', { }, function(result)
         if result then
             for k,v in pairs(result) do
                 Vaults = json.decode(v.vaults)
@@ -209,7 +209,7 @@ QBCore.Functions.CreateCallback('sayer-stashbox:GetBankDetails', function(source
     local citizenid = Player.PlayerData.citizenid
     if not Config.Banks[bank] then return end
 
-    MySQL.rawExecute('SELECT * FROM sayer_vaults WHERE citizenid = ?', { citizenid }, function(result)
+    MySQL.rawExecute('SELECT * FROM tss_stashbox WHERE citizenid = ?', { citizenid }, function(result)
         if result[1] then
             DebugCode("citizenid: "..tostring(result[1].citizenid))
             DebugCode("id: "..tostring(result[1].id))
@@ -226,7 +226,7 @@ QBCore.Functions.CreateCallback('sayer-stashbox:GetBankDetails', function(source
                     Upgrade = 0,
                 }
                 local Table = json.encode(Vaults)
-                MySQL.update('UPDATE sayer_vaults SET vaults = ? WHERE citizenid = ?', { Table, citizenid })
+                MySQL.update('UPDATE tss_stashbox SET vaults = ? WHERE citizenid = ?', { Table, citizenid })
             end
             if Vaults[bank].Purchased then
                 cb(Vaults[bank])
@@ -244,7 +244,7 @@ QBCore.Functions.CreateCallback('sayer-stashbox:PD:GetVault', function(source, c
     local citizenid = Player.PlayerData.citizenid
     if not Config.Banks[bank] then return end
 
-    MySQL.rawExecute('SELECT * FROM sayer_vaults WHERE citizenid = ?', { cid }, function(result)
+    MySQL.rawExecute('SELECT * FROM tss_stashbox WHERE citizenid = ?', { cid }, function(result)
         if result[1] then
             local Vaults = json.decode(result[1].vaults)
             for d,j in pairs(Vaults) do
